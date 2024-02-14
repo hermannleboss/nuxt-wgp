@@ -35,14 +35,16 @@ const endpoint = "https://api-wevegotpoems.up.railway.app/v1"
 const data = ref()
 const loading = ref(false)
 
-onMounted(async () => {
-layer8_interceptor.initEncryptedTunnel({
-  SP_Backend: 'api-wevegotpoems.up.railway.app',
-  Layer8Scheme: 'https',
-  //Layer8Host: 'aws-container-service-t1.gej3a3qi2as1a.ca-central-1.cs.amazonlightsail.com',
-  Layer8Host: 'layer8devproxy.net',
-  Layer8Port: ''
+onBeforeMount(async () => {
+  layer8_interceptor.initEncryptedTunnel({
+    SP_Backend: 'api-wevegotpoems.up.railway.app',
+    Layer8Scheme: 'https',
+    //Layer8Host: 'aws-container-service-t1.gej3a3qi2as1a.ca-central-1.cs.amazonlightsail.com',
+    Layer8Host: 'layer8devproxy.net',
+    Layer8Port: ''
+  })
 })
+onMounted(async () => {
   loading.value = true
   // TODO: remove this timeout
   setTimeout(async () => {
@@ -63,6 +65,4 @@ layer8_interceptor.initEncryptedTunnel({
 })
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
